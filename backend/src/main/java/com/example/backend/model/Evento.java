@@ -1,7 +1,7 @@
 package com.example.backend.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,5 +43,5 @@ public class Evento {
         joinColumns = @JoinColumn(name="evento_id"),
         inverseJoinColumns = @JoinColumn(name="usuario_id")
     )
-    private List<Usuario> asistentes;
+    private Set<Usuario> asistentes;
 }

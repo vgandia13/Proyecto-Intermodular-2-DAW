@@ -87,7 +87,9 @@ public class EventoService {
         evento.setId(dto.getId());
         evento.setNombre(dto.getNombre());
         evento.setDescripcion(dto.getDescripcion());
-        evento.setFecha(LocalDate.parse(dto.getFecha()));
+        if(dto.getFecha() != null){
+            evento.setFecha(LocalDate.parse(dto.getFecha()));
+        }
         evento.setUbicacion(dto.getUbicacion());
         evento.setImagenUrl(dto.getImagenUrl());
 

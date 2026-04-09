@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,8 @@ public class EventoController {
 
     @PostMapping("/{id}/asistir")
     @PreAuthorize("isAuthenticated()")
-    public void asistir(@PathVariable Long id, Authentication authentication) {
+    public ResponseEntity<?> asistir(@PathVariable Long id, Authentication authentication) {
         eventoService.inscribirUsuario(id, authentication.getName());
+        return ResponseEntity.ok().build();
     }
 }
