@@ -8,17 +8,14 @@ import com.example.backend.dto.UsuarioRegistroDTO;
 import com.example.backend.dto.UsuarioResponseDTO;
 import com.example.backend.exception.EmailRegistradoException;
 import com.example.backend.exception.UsuarioNoEncontradoException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
-    public UsuarioService(UsuarioRepository usuarioRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.usuarioRepository = usuarioRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public UsuarioResponseDTO registrarUsuario(UsuarioRegistroDTO registroDTO){
         if (usuarioRepository.existsByEmail(registroDTO.getEmail())) {

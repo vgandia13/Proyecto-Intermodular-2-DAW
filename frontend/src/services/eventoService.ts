@@ -1,5 +1,5 @@
-import api from './api';
-import { EventoDTO } from '../types'; // Tu interfaz TypeScript
+import api from './apiService';
+import type { EventoDTO } from '../types/EventoDTO'; // Tu interfaz TypeScript
 
 export const EventoService = {
   // Público según tu SecurityConfig
