@@ -3,29 +3,10 @@
 Thumbs.db
 desktop.ini
 
-# --- IDEs y Editores ---
+# --- IDEs y Editores Generales ---
 .vscode/
 *.code-workspace
-
-# --- Backend (Spring Boot / Maven) ---
-backend/target/
-backend/bin/
-backend/*.jar
-backend/*.war
-backend/*.zip
-backend/.mvn/
-# --- Frontend (Angular / Node) ---
-frontend/node_modules/
-frontend/dist/
-frontend/.angular/
-frontend/tmp/
-frontend/out-tsc/
-frontend/bazel-out/
-frontend/.nx/
-frontend/npm-debug.log*
-frontend/yarn-error.log*
-frontend/yarn-debug.log*
-frontend/.editorconfig
+.idea/
 
 # --- Logs y Temporales ---
 *.log
