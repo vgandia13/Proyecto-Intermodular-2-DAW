@@ -14,19 +14,16 @@ import com.example.backend.repository.CategoriaRepository;
 import com.example.backend.repository.EventoRepository;
 import com.example.backend.repository.UsuarioRepository;
 
+import lombok.RequiredArgsConstructor;
 import jakarta.transaction.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class EventoService {
 
-    @Autowired
-    private EventoRepository eventoRepository;
-
-    @Autowired 
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    private final EventoRepository eventoRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final CategoriaRepository categoriaRepository;
 
     public List<EventoDTO> listarTodos() {
         return eventoRepository.findAll().stream()
@@ -57,10 +54,8 @@ public class EventoService {
         Evento e = eventoRepository.findById(eventoId).orElseThrow(() -> new RuntimeException("Evento no encontrado"));
         Usuario u = usuarioRepository.findByEmail(emailUsuario).orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
 
-        if( e != null && u != null){
-            e.getAsistentes().add(u);
-            eventoRepository.save(e);
-        }
+        e.getAsistentes().add(u);
+        eventoRepository.save(e);
     }
 
 

@@ -13,6 +13,7 @@ import com.example.backend.dto.EventoDTO;
 import com.example.backend.service.EventoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,9 +21,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/eventos")
+@RequiredArgsConstructor
 public class EventoController {
-    @Autowired
-    private EventoService eventoService;
+
+    private final EventoService eventoService;
 
     @GetMapping
     public List<EventoDTO> obtenerTodos() {

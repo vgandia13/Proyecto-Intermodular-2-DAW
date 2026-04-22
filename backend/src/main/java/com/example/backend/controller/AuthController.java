@@ -21,20 +21,18 @@ import com.example.backend.security.JwtUtils;
 import com.example.backend.service.UsuarioService;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtUtils jwtUtils;
-
-    @Autowired
-    private UsuarioService usuarioService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
+    private final UsuarioService usuarioService;
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequestDTO loginRequest) {
