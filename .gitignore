@@ -14,8 +14,6 @@ backend/*.jar
 backend/*.war
 backend/*.zip
 backend/.mvn/
-backend/src/main/java/com/example/backend/security/
-backend/src/main/resources/application.properties
 # --- Frontend (Angular / Node) ---
 frontend/node_modules/
 frontend/dist/
