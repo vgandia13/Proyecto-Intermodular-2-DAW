@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.DTO.EventoDTO;
+import com.example.backend.exception.EventoNoEncontradoException;
 import com.example.backend.exception.UsuarioNoEncontradoException;
 import com.example.backend.model.Evento;
 import com.example.backend.model.Usuario;
@@ -45,12 +46,12 @@ public class EventoService {
     public EventoDTO obtenerPorId(Long id) {
         return eventoRepository.findById(id)
                 .map(this::mapToDTO)
-                .orElseThrow(() -> new RuntimeException("Evento no encontrado"));
+                .orElseThrow(() -> new EventoNoEncontradoException("Evento no encontrado"));
     }
 
     @Transactional
     public void inscribirUsuario(Long eventoId, String emailUsuario) {
-        Evento e = eventoRepository.findById(eventoId).orElseThrow(() -> new RuntimeException("Evento no encontrado"));
+        Evento e = eventoRepository.findById(eventoId).orElseThrow(() -> new EventoNoEncontradoException("Evento no encontrado"));
         Usuario u = usuarioRepository.findByEmail(emailUsuario).orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
 
         e.getAsistentes().add(u);
