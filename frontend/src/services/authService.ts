@@ -6,10 +6,12 @@ import { UsuarioRegistro } from '@/types/UsuarioRegistro';
 export const AuthService = {
   login: async (credentials: LoginRequest): Promise<AuthResponse> => {
     const response = await api.post<AuthResponse>('/auth/login', credentials);
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
+    const jsonResponse = response.data;
+    if (jsonResponse.token) {
+      localStorage.setItem('token', jsonResponse.token);
+      localStorage.setItem('usuario', JSON.stringify(jsonResponse.usuario));
     }
-    return response.data;
+    return jsonResponse;
   },
 
   register: async (credentials: UsuarioRegistro): Promise<UsuarioRegistro> => {
@@ -22,5 +24,6 @@ export const AuthService = {
 
   logout: () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   },
 };

@@ -66,7 +66,7 @@ const LoginPage = () => {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Contraseña</label>
-              <div className="relative flex items-center pb-2 py-2">
+              <div className="relative flex items-center pb-2 py-2 mb-2">
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}

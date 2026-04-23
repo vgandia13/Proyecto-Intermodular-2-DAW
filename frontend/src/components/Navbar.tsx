@@ -1,13 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import { useData } from "@/contexts/AppContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const isAuthenticated = !!localStorage.getItem("token");
+  const { usuario, setUsuario } = useData();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    setUsuario(null);
     navigate("/login");
   };
 
@@ -21,7 +24,7 @@ const Navbar = () => {
           <ThemeToggle />
 
           <div className="h-6 w-px bg-primary-foreground/20 hidden sm:block"></div>
-          {isAuthenticated ? (
+          {usuario ? (
             <>
               <Button
                 variant="ghost"

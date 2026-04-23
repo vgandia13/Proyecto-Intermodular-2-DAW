@@ -17,7 +17,7 @@ export function ThemeToggle() {
         id="theme-mode"
         checked={isDark}
         size="default"
-        style={{ borderColor: 'black', backgroundColor: 'gray' }}
+        style={{ borderColor: 'slategray', backgroundColor: 'gray' }}
         onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       />
       

@@ -41,8 +41,13 @@ public class AuthController {
 
        String token = jwtUtils.generateToken(authentication);
 
+       UsuarioRegistroDTO usuario = usuarioService.obtenerUsuarioPorEmail(loginRequest.getEmail());
+
        Map<String, String> response = new HashMap<>();
        response.put("token", token);
+       response.put("usuario", {
+            
+       });
         
        return ResponseEntity.ok(response);
     }
