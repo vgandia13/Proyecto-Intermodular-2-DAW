@@ -66,7 +66,7 @@ const LoginPage = () => {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Contraseña</label>
-              <div className="relative flex items-center pb-2">
+              <div className="relative flex items-center pb-2 py-2">
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -77,7 +77,7 @@ const LoginPage = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-700 transition-colors focus:outline-none"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-700 hover:text-zinc-900 transition-colors focus:outline-none"
                 >
                   {showPassword ? (
                     <FaRegEyeSlash size={18} />
