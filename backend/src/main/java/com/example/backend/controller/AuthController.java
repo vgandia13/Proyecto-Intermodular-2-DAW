@@ -36,10 +36,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequestDTO loginRequest) {
        Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(loginRequest.getEmail() , loginRequest.getPassword())
+            new UsernamePasswordAuthenticationToken(loginRequest.getEmail() , loginRequest.getPassword())
        );
 
-       String token = jwtUtils.generateToken(authentication.getName());
+       String token = jwtUtils.generateToken(authentication);
 
        Map<String, String> response = new HashMap<>();
        response.put("token", token);

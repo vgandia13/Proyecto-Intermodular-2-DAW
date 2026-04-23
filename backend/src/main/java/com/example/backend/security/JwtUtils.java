@@ -5,12 +5,13 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
+import java.util.stream.Collectors;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 
 @Component
 public class JwtUtils {
 
-    // Esta clave debe ser secreta y larga. 
-    // En producción, debería venir de una variable de entorno.
     private final String JWT_SECRET = "tu_clave_secreta_super_larga_y_segura_para_feria_plus";
     private final int JWT_EXPIRATION_MS = 86400000; // 24 horas
 
@@ -19,9 +20,14 @@ public class JwtUtils {
     }
 
     // Método para generar la "pulsera de acceso"
-    public String generateToken(String email) {
+    public String generateToken(Authentication authentication) {
+        String roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
+
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(authentication.getName())
+                .claim("roles", roles)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + JWT_EXPIRATION_MS))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -36,6 +42,15 @@ public class JwtUtils {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+    }
+
+    public String getRolesFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.get("roles", String.class);
     }
 
     // Método para verificar si el token es válido o ha sido manipulado

@@ -6,23 +6,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
-    private final UserDetailsService userDetailsService;
 
     // Inyectamos nuestras herramientas
     public JwtAuthenticationFilter(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
         this.jwtUtils = jwtUtils;
-        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -46,14 +48,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         //  Si hay email y el usuario no está ya autenticado en esta petición...
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-            // Creamos el objeto de autenticación con los roles (Organizador, etc.)
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                userDetails, null, userDetails.getAuthorities());
-                
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            String rolesString = jwtUtils.getRolesFromToken(token);
+            
+            List<SimpleGrantedAuthority> authorities = Arrays.stream(rolesString.split(","))
+                    .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList());
 
-            // Establecemos al usuario como "autenticado" para el resto de la petición
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, null, authorities);
+
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
