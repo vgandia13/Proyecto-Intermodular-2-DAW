@@ -70,6 +70,7 @@ const LoginPage = () => {
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}
+                  placeholder="Introduce tu contraseña"
                   onChange={(e) => setPassword(e.target.value)}
                   className="pr-10"
                   required

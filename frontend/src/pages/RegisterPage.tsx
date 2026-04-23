@@ -56,7 +56,7 @@ const RegisterPage = () => {
     } catch (error) {
       console.error("Error en el registro:", error);
       toast.error("Error en el registro", {
-        description: "Error al registrarse",
+        description: "Compruebe los campos e intente nuevamente",
       });
     } finally {
       setIsLoading(false);
@@ -100,7 +100,7 @@ const RegisterPage = () => {
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}
-                  placeholder="Introduce tu contraseña"
+                  placeholder="Introduce tu contraseña (mínimo 8 caracteres)"
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
