@@ -25,7 +25,7 @@ export const AppContextProvider = ({
       if (savedUser) {
         const parsed = JSON.parse(savedUser);
         return {
-          name: parsed.nombre || "",
+          name: parsed.name || parsed.nombre || "",
           email: parsed.email || "",
           rol: parsed.rol || "ROLE_VISITANTE",
         };

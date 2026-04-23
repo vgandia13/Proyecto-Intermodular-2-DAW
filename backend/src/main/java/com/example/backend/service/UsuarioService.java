@@ -33,7 +33,7 @@ public class UsuarioService {
         return mapToResponseDTO(usuario);
     }
 
-    public UsuarioRegistroDTO obtenerUsuarioPorEmail(String email) {
+    public UsuarioResponseDTO obtenerUsuarioPorEmail(String email) {
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
         return mapToResponseDTO(usuario);

@@ -34,20 +34,23 @@ public class AuthController {
     private final UsuarioService usuarioService;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequestDTO loginRequest) {
+    public ResponseEntity<Map<String, Object>> login(@RequestBody LoginRequestDTO loginRequest) {
        Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getEmail() , loginRequest.getPassword())
        );
 
        String token = jwtUtils.generateToken(authentication);
 
-       UsuarioRegistroDTO usuario = usuarioService.obtenerUsuarioPorEmail(loginRequest.getEmail());
+       UsuarioResponseDTO usuario = usuarioService.obtenerUsuarioPorEmail(loginRequest.getEmail());
 
-       Map<String, String> response = new HashMap<>();
+       Map<String, Object> usuarioMap = new HashMap<>();
+       usuarioMap.put("name", usuario.getNombre());
+       usuarioMap.put("email", usuario.getEmail());
+       usuarioMap.put("rol", usuario.getRol().name());
+
+       Map<String, Object> response = new HashMap<>();
        response.put("token", token);
-       response.put("usuario", {
-            
-       });
+       response.put("usuario", usuarioMap);
         
        return ResponseEntity.ok(response);
     }

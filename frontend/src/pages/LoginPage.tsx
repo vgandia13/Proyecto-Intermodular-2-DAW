@@ -13,8 +13,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useData } from "@/contexts/AppContext";
 
 const LoginPage = () => {
+  const { setUsuario } = useData();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +31,7 @@ const LoginPage = () => {
     try {
       const response = await AuthService.login(payload);
       localStorage.setItem("token", response.token);
+      setUsuario(response.usuario as { name: string; email: string; rol: import("@/types/Rol").Rol });
       console.log("Login exitoso");
       toast("Login exitoso", {
         description: "Bienvenido a Feria+",
