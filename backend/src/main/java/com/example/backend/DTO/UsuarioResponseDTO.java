@@ -1,4 +1,4 @@
-package com.example.backend.dto;
+package com.example.backend.DTO;
 
 import java.time.LocalDateTime;
 import com.example.backend.model.Rol;

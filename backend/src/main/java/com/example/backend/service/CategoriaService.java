@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import org.springframework.stereotype.Service;
 import com.example.backend.repository.CategoriaRepository;
-import com.example.backend.dto.CategoriaDTO;
+import com.example.backend.DTO.CategoriaDTO;
 import com.example.backend.model.Categoria;
 import java.util.List;
 import com.example.backend.exception.CategoriaNoEncontradaException;

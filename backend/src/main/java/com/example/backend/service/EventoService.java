@@ -3,10 +3,9 @@ package com.example.backend.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.backend.dto.EventoDTO;
+import com.example.backend.DTO.EventoDTO;
 import com.example.backend.exception.UsuarioNoEncontradoException;
 import com.example.backend.model.Evento;
 import com.example.backend.model.Usuario;
