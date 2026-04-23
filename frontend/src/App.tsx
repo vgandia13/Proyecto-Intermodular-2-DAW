@@ -1,12 +1,13 @@
+import { Toaster } from "sonner";
 import "./App.css";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-900">
-      <h1 className="text-4xl font-bold text-blue-400">
-        Tailwind v4 configurado correctamente
-      </h1>
-    </div>
+    <>
+      <LoginPage />
+      <Toaster richColors position="top-center" />
+    </>
   );
 }
 
