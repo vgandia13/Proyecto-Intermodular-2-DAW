@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="py-4 bg-primary text-primary-foreground shadow-md">
+    <nav className="py-6 z-50 bg-primary text-primary-foreground shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4">
         <Link to="/" className="text-xl font-bold tracking-tight">
           Feria+
