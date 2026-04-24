@@ -11,10 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -27,7 +31,6 @@ public class Evento {
     private String nombre;
     private String descripcion;
     private LocalDate fecha;
-    private String ubicacion;
     private String imagenUrl;
 
     @ManyToOne
@@ -44,4 +47,14 @@ public class Evento {
         inverseJoinColumns = @JoinColumn(name="usuario_id")
     )
     private Set<Usuario> asistentes;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ubicacion_id")
+    private Ubicacion ubicacion;
+
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+    private List<Resena> reseñas;
+
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+    private List<Puesto> puestos;
 }
