@@ -92,15 +92,12 @@ const CarruselEventos = () => {
                     </div>
                   </CardHeader>
 
-                  {/* 3. flex-1 empuja el Footer hacia abajo */}
                   <CardContent className="flex-1">
-                    {/* line-clamp-3 limita la descripción a 3 líneas (añade puntos suspensivos) */}
                     <p className="text-sm text-muted-foreground line-clamp-3">
                       {evento.descripcion}
                     </p>
                   </CardContent>
 
-                  {/* 4. mt-auto asegura que siempre se quede pegado abajo */}
                   <CardFooter className="flex justify-between items-center mt-auto border-t pt-4">
                     <span className="text-sm font-semibold">
                       {evento.fecha}
