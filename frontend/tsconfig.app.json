@@ -25,6 +25,7 @@
 
     /* CONFIGURACIÓN DE ALIAS */
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["./src/*"]
     }
