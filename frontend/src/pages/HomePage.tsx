@@ -30,8 +30,8 @@ const HomePage = () => {
             onSelect={setDate}
             className="rounded-md border"
             captionLayout="dropdown-years"
-            fromYear={2026}
-            toYear={2030}
+            startMonth={new Date(2026, 0)}
+            endMonth={new Date(2030, 11)}
             timeZone={timeZone}
             ISOWeek={true}
             classNames={{
