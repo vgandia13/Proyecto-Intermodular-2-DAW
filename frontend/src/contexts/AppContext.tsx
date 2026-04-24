@@ -22,13 +22,18 @@ export const AppContextProvider = ({
   const [usuarioLogeado, setUsuarioLogeado] = useState<UsuarioType | null>(
     () => {
       const savedUser = localStorage.getItem("usuario");
-      if (savedUser) {
-        const parsed = JSON.parse(savedUser);
-        return {
-          name: parsed.name || parsed.nombre || "",
-          email: parsed.email || "",
-          rol: parsed.rol || "ROLE_VISITANTE",
-        };
+      if (savedUser && savedUser !== "undefined") {
+        try {
+          const parsed = JSON.parse(savedUser);
+          return {
+            name: parsed.name || parsed.nombre || "",
+            email: parsed.email || "",
+            rol: parsed.rol || "ROLE_VISITANTE",
+          };
+        } catch (error) {
+          console.error("Error parsing usuario from localStorage:", error);
+          return null;
+        }
       }
       return null;
     },
