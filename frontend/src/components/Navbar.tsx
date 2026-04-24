@@ -21,6 +21,9 @@ const Navbar = () => {
         <Link to="/" className="text-xl font-bold tracking-tight">
           Feria+
         </Link>
+        <Link to="/" className="text-xl font-bold tracking-tight">
+          Eventos
+        </Link>
         <div className="flex items-center space-x-6">
           <ThemeToggle />
 

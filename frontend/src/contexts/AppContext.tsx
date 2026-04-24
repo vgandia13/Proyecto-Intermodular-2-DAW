@@ -32,7 +32,6 @@ export const AppContextProvider = ({
             email: parsed.email || "",
             rol: parsed.rol || "ROLE_VISITANTE",
           };
-          setIsLogged(true);
         } catch (error) {
           console.error("Error parsing usuario from localStorage:", error);
           return null;
@@ -42,7 +41,7 @@ export const AppContextProvider = ({
     },
   );
 
-  const [isLogged, setIsLogged] = useState(usuarioLogeado !== null);
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <AppContext.Provider
