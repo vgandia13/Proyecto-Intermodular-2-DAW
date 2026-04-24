@@ -30,8 +30,21 @@ const HomePage = () => {
             onSelect={setDate}
             className="rounded-md border"
             captionLayout="dropdown-years"
+            fromYear={2026}
+            toYear={2030}
             timeZone={timeZone}
             ISOWeek={true}
+            classNames={{
+              caption_label: "hidden",
+              caption_dropdowns:
+                "flex w-full items-center justify-center gap-2",
+
+              dropdown_month: "flex-1 flex",
+              dropdown_year: "flex-1 flex",
+
+              dropdown:
+                "h-8 w-full cursor-pointer rounded-md border border-input bg-primary px-2 py-1 text-sm font-medium shadow-sm transition-colors hover:bg-primary hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+            }}
           />
 
           <p className="mt-4 text-sm font-mono bg-muted px-3 py-1 rounded">

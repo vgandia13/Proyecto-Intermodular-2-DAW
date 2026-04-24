@@ -100,7 +100,7 @@ const CarruselEventos = () => {
 
                   <CardFooter className="flex justify-between items-center mt-auto border-t pt-4">
                     <span className="text-sm font-semibold">
-                      {evento.fecha}
+                      {new Date(evento.fecha).toLocaleDateString()}
                     </span>
                     <button className="text-primary text-sm font-bold hover:underline">
                       Ver más
