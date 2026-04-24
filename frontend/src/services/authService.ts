@@ -21,9 +21,4 @@ export const AuthService = {
     );
     return response.data;
   },
-
-  logout: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
-  },
 };
