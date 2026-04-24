@@ -21,14 +21,14 @@ const HomePage = () => {
           </p>
         </div>
 
-        <div className="flex flex-col items-center bg-card p-6 rounded-xl border shadow-sm">
+        <div className="flex flex-col items-center bg-card p-6 rounded-xl border border-gray-500/50 shadow-sm">
           <p className="font-medium mb-4">Selecciona una fecha:</p>
 
           <Calendar
             mode="single"
             selected={date}
             onSelect={setDate}
-            className="rounded-md border"
+            className="rounded-md border border-gray-500/50"
             captionLayout="dropdown-years"
             startMonth={new Date(2026, 0)}
             endMonth={new Date(2030, 11)}

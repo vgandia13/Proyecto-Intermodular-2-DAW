@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge"; 
+import { Badge } from "@/components/ui/badge";
 import { EventoDTO } from "@/types/EventoDTO";
 import { useEffect, useState } from "react";
 import { EventoService } from "@/services/eventoService";
