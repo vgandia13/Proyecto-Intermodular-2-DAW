@@ -30,7 +30,7 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 asChild
-                className="hover:bg-primary/90 hover:text-white"
+                className="hover:bg-primary/90 hover:text-white hover:underline"
               >
                 <Link to="/dashboard">Mi Panel</Link>
               </Button>

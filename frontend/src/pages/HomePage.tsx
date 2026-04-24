@@ -1,39 +1,37 @@
-import { useData } from "@/contexts/AppContext";
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
 
 const HomePage = () => {
-  const { usuario } = useData();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-
   return (
-    <div className="flex items-center justify-between gap-2 p-10">
-      <h1>Bienvenido a la página de inicio</h1>
-      {usuario ? (
-        <p>
-          Hola, {usuario.name}! Tu rol es:{" "}
-          {usuario.rol.split("_").slice(1).join(" ")}.
+    <div className="flex flex-col md:flex-row items-center justify-between gap-12 p-10 w-full max-w-7xl mx-auto">
+      <div className="flex flex-col items-start space-y-6 flex-1">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Da vida a tu comunidad con <span className="text-primary">Feria+</span></h1>
+        <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+          ¡Bienvenido a Feria+! Conecta con tu comunidad, comparte tus productos
+          y descubre lo que otros tienen para ofrecer. ¡Únete a la feria más
+          grande de tu ciudad y haz crecer tu negocio local!
         </p>
-      ) : (
-        <p>No has iniciado sesión.</p>
-      )}
+      </div>
 
-      <div className="flex flex-col items-center">
-        <p>Selecciona una fecha:</p>
+      <div className="flex flex-col items-center bg-card p-6 rounded-xl border shadow-sm">
+        <p className="font-medium mb-4">Selecciona una fecha:</p>
 
         <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="rounded-lg border mt-4 mb-4"
+          className="rounded-md border"
           captionLayout="dropdown-years"
           timeZone={timeZone}
           ISOWeek={true}
         />
 
-        <p>Fecha seleccionada: {date?.toLocaleDateString()}</p>
+        <p className="mt-4 text-sm font-mono bg-muted px-3 py-1 rounded">
+          Fecha: {date ? date.toLocaleDateString() : "No seleccionada"}
+        </p>
       </div>
     </div>
   );
