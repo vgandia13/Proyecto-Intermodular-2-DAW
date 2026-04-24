@@ -41,7 +41,9 @@ export const AppContextProvider = ({
     },
   );
 
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(() => {
+    return !!localStorage.getItem("token");
+  });
 
   return (
     <AppContext.Provider
