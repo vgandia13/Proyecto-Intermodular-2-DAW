@@ -14,14 +14,15 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useData } from "@/contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const { setUsuario } = useData();
+  const { setUsuario, setIsLogged } = useData();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -36,6 +37,8 @@ const LoginPage = () => {
       toast("Login exitoso", {
         description: "Bienvenido a Feria+",
       });
+      setIsLogged(true);
+      navigate("/");
     } catch (error) {
       console.error("Error en las credenciales:", error);
       toast.error("Error en las credenciales", {

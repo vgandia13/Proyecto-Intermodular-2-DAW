@@ -5,12 +5,13 @@ import { useData } from "@/contexts/AppContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { usuario, setUsuario } = useData();
+  const { usuario, setUsuario, setIsLogged } = useData();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("usuario");
     setUsuario(null);
+    setIsLogged(false);
     navigate("/login");
   };
 

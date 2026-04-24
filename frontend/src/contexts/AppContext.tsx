@@ -4,6 +4,8 @@ import { createContext, useState, useContext } from "react";
 type AppContextType = {
   usuario: UsuarioType | null;
   setUsuario: (u: UsuarioType | null) => void;
+  isLogged: boolean;
+  setIsLogged: (u: boolean) => void;
 };
 
 type UsuarioType = {
@@ -30,6 +32,7 @@ export const AppContextProvider = ({
             email: parsed.email || "",
             rol: parsed.rol || "ROLE_VISITANTE",
           };
+          setIsLogged(true);
         } catch (error) {
           console.error("Error parsing usuario from localStorage:", error);
           return null;
@@ -39,9 +42,16 @@ export const AppContextProvider = ({
     },
   );
 
+  const [isLogged, setIsLogged] = useState(usuarioLogeado !== null);
+
   return (
     <AppContext.Provider
-      value={{ usuario: usuarioLogeado, setUsuario: setUsuarioLogeado }}
+      value={{
+        usuario: usuarioLogeado,
+        setUsuario: setUsuarioLogeado,
+        isLogged,
+        setIsLogged,
+      }}
     >
       {children}
     </AppContext.Provider>
