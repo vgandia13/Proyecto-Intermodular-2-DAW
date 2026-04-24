@@ -65,7 +65,11 @@ public class EventoService {
         dto.setNombre(evento.getNombre());
         dto.setDescripcion(evento.getDescripcion());
         dto.setFecha(evento.getFecha() != null ? evento.getFecha().toString() : null);
-        dto.setUbicacion(evento.getUbicacion());
+        if (evento.getUbicacion() != null) {
+            dto.setUbicacion(evento.getUbicacion().getNombre());
+        } else {
+            dto.setUbicacion(null);
+        }
         dto.setImagenUrl(evento.getImagenUrl());
         
         if(evento.getCategoria() != null){
@@ -85,7 +89,7 @@ public class EventoService {
         if(dto.getFecha() != null){
             evento.setFecha(LocalDate.parse(dto.getFecha()));
         }
-        evento.setUbicacion(dto.getUbicacion());
+        // evento.setUbicacion(dto.getUbicacion()); // Requiere lookup de DB o cambios en DTO
         evento.setImagenUrl(dto.getImagenUrl());
 
         if(dto.getCategoriaId() != null){
