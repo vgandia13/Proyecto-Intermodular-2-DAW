@@ -40,5 +40,5 @@ public class Puesto {
     private Evento evento;
 
     @OneToMany(mappedBy = "puesto")
-    private Reserva reserva;
+    private java.util.List<Reserva> reservas;
 }
