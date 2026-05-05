@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.DTO.EventoDTO;
 import com.example.backend.model.Evento;
+import com.example.backend.repository.EventoRepository;
 import com.example.backend.service.EventoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class EventoController {
     
     private final EventoService eventoService;
+    private final EventoRepository eventoRepository;
 
     @GetMapping
     public ResponseEntity<Page<EventoDTO>> obtenerTodos(
@@ -44,7 +45,20 @@ public class EventoController {
             eventos = eventoRepository.findAll(pageable);
         }
 
-        return ResponseEntity.ok(eventos);
+        Page<EventoDTO> eventosDTO = eventos.map(e -> {
+            EventoDTO dto = new EventoDTO();
+            dto.setId(e.getId());
+            dto.setNombre(e.getNombre());
+            dto.setDescripcion(e.getDescripcion());
+            dto.setFecha(e.getFecha() != null ? e.getFecha().toString() : null);
+            if (e.getUbicacion() != null) dto.setUbicacion(e.getUbicacion().getNombre());
+            dto.setImagenUrl(e.getImagenUrl());
+            if (e.getCategoria() != null) dto.setCategoriaId(e.getCategoria().getId());
+            if (e.getOrganizador() != null) dto.setOrganizadorId(e.getOrganizador().getId());
+            return dto;
+        });
+
+        return ResponseEntity.ok(eventosDTO);
     }
     
     @PostMapping
