@@ -16,7 +16,11 @@ import {
 } from "@/components/ui/input-group";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Pagination, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 const EventsPage = () => {
@@ -144,19 +148,38 @@ const EventsPage = () => {
 
       <div className="mt-8">
         <Pagination className="flex items-center align-middle justify-center">
-          <ChevronsLeft className={page === 0 ? "pointer-events-none opacity-50" : "cursor-pointer"} />
+          <Button variant={"ghost"} onClick={() => setPage(0)}>
+            <ChevronsLeft
+              className={
+                page === 0 ? "pointer-events-none opacity-50" : "cursor-pointer"
+              }
+            />
+          </Button>
           <PaginationPrevious
-            className={page === 0 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+            className={
+              page === 0 ? "pointer-events-none opacity-50" : "cursor-pointer"
+            }
             onClick={() => setPage((p) => Math.max(0, p - 1))}
           />
           <span className="mx-4 flex items-center text-sm font-medium">
             Página {page + 1} de {totalPages || 1}
           </span>
           <PaginationNext
-            className={page >= totalPages - 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+            className={
+              page >= totalPages - 1
+                ? "pointer-events-none opacity-50"
+                : "cursor-pointer"
+            }
             onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
           />
-          <ChevronsRight className={page === 0 ? "pointer-events-none opacity-50" : "cursor-pointer"} />
+          <Button variant={"ghost"}>
+            <ChevronsRight
+            onClick={() => setPage(totalPages)}
+              className={
+                page === 0 ? "pointer-events-none opacity-50" : "cursor-pointer"
+              }
+            />
+          </Button>
         </Pagination>
       </div>
     </div>
