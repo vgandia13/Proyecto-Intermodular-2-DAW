@@ -4,6 +4,8 @@ export interface EventoDTO {
   descripcion?: string;
   fecha: string;
   ubicacion?: string;
+  latitud?: number;
+  longitud?: number;
   imagenUrl?: string;
   categoriaId?: number;
   organizadorId: number;

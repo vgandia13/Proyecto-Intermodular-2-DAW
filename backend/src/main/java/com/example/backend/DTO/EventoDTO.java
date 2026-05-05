@@ -14,6 +14,8 @@ public class EventoDTO {
     private String descripcion;
     private String fecha; 
     private String ubicacion;
+    private Double latitud;
+    private Double longitud;
     private String imagenUrl;
     private Long categoriaId;
     @NotNull
