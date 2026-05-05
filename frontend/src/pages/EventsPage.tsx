@@ -75,7 +75,7 @@ const EventsPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <nav className="py-2 px-8">
+      <nav className="py-2 px-8 m-2">
         <InputGroup>
           <InputGroupInput
             placeholder="Buscar eventos"
