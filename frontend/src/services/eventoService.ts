@@ -8,6 +8,11 @@ export const EventoService = {
     return response.data;
   },
 
+  obtenerPorId: async (id: number): Promise<EventoDTO> => {
+    const response = await api.get(`/eventos/${id}`);
+    return response.data;
+  },
+
   // Requiere Rol ORGANIZADOR según tu SecurityConfig
   create: async (evento: EventoDTO): Promise<EventoDTO> => {
     const response = await api.post<EventoDTO>('/eventos', evento);

@@ -61,6 +61,11 @@ public class EventoController {
         return ResponseEntity.ok(eventosDTO);
     }
     
+    @GetMapping("/{id}")
+    public ResponseEntity<EventoDTO> obtenerPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(eventoService.obtenerPorId(id));
+    }
+    
     @PostMapping
     @PreAuthorize("hasRole('ORGANIZADOR')")
     public EventoDTO crear(@RequestBody EventoDTO eventoDTO){

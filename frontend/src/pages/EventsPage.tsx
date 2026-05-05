@@ -22,6 +22,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const EventsPage = () => {
   const [events, setEvents] = useState<EventoDTO[]>([]);
@@ -32,6 +33,7 @@ const EventsPage = () => {
   const [loading, setLoading] = useState(false);
 
   const loadEvents = async (nombre: string, p: number) => {
+
     setLoading(true);
     try {
       const data = await EventoService.getAll({ nombre, page: p, size: 9 });
@@ -136,6 +138,7 @@ const EventsPage = () => {
                 <CardFooter className="flex flex-col items-start gap-2 text-sm text-muted-foreground pt-4 border-t">
                   <p>📍 {event.ubicacion}</p>
                   <p>📅 {new Date(event.fecha).toLocaleDateString()}</p>
+                  <Link className="text-primary hover:underline" to={`/events/${event.id}`}>Ver más</Link>
                 </CardFooter>
               </Card>
             ))}
